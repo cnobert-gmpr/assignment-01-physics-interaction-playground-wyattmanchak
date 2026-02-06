@@ -14,15 +14,12 @@ namespace GMPR2512.Assignment1
 
         void OnTriggerEnter2D(Collider2D collider2D)
         {
-            if (collider2D.CompareTag("Ball"))
+            if (collider2D.CompareTag("Ball") && _canTeleport)
             {
-                if (_canTeleport)
-                {
-                    StartCoroutine(ExitPortal());
-                    Rigidbody2D rb = collider2D.GetComponent<Rigidbody2D>();
-                    rb.linearVelocity = _siblingPortal.transform.rotation * rb.linearVelocity;
-                    collider2D.transform.position = _siblingPortal.transform.position;
-                }
+                StartCoroutine(ExitPortal());
+                Rigidbody2D rb = collider2D.GetComponent<Rigidbody2D>();
+                rb.linearVelocity = _siblingPortal.transform.rotation * rb.linearVelocity;
+                collider2D.transform.position = _siblingPortal.transform.position;
             }
         }
 
